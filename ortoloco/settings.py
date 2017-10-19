@@ -1,4 +1,6 @@
 # Django settings for ortoloco project.
+from __future__ import absolute_import, unicode_literals
+
 import os
 
 """
@@ -31,6 +33,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',
@@ -55,7 +58,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'impersonate.middleware.ImpersonateMiddleware'
+    'impersonate.middleware.ImpersonateMiddleware',
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware'
 )
 
 INSTALLED_APPS = (
@@ -73,7 +78,23 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'tinymce',
     'impersonate',
-    'storages'
+    'storages',
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+
+    'modelcluster',
+    'taggit',
+    'search',
+    'home'
 )
 
 
@@ -328,5 +349,5 @@ IMAGES = {'status_100': '/static/img/erbse_voll.png',
             'core': '/static/img/erbse_voll_kernbereich.png'
 }
 GOOGLE_API_KEY = os.environ['ORTOLOCO_GOOGLE_API_KEY']
-
+WAGTAIL_SITE_NAME = 'ortoloco.ch - Statische Seite'
 

@@ -1,7 +1,19 @@
+{% load static wagtailuserbar %}
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title>ortoloco.ch - Die regionale Gartenkooperative</title>
+    <title>
+        ortoloco.ch - Die regionale Gartenkooperative
+        {% block title %}
+            {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+            {% with self.get_site.site_name as site_name %}
+                {% if site_name %}- {{ site_name }}{% endif %}
+            {% endwith %}
+        {% endblock %}
+    </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <link rel="shortcut icon" href="/static/img/favicono.ico">
@@ -13,6 +25,7 @@
     <link href="{{ STATIC_URL }}css/ortoloco.css" rel="stylesheet">
 </head>
 <body>
+{% wagtailuserbar %}
 <div class="container">
     <div class="erbsetop hidden-xs"></div>
     <div class="erbseleft hidden-xs"></div>
